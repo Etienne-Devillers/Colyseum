@@ -1,0 +1,99 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Bebas Neue', cursive;
+    background-color: #1c1f21;
+    color: rgb(222, 216, 216);
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+header{
+    height: 100px;
+    background-color: rgb(0, 123, 255);
+    color: rgb(222, 216, 216);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+}
+
+.generalPage{
+    width: 90vw;
+    margin: auto;
+
+}
+
+h2 {
+    font-size: 28px;
+}
+
+#choiceSelect{
+    margin-top: 2em;
+    padding: 10px;
+    margin-right: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #222629;
+    background-color: #222629;
+    color: #fff;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+}
+
+.formSubmit{
+    margin: 5em 0;
+    cursor: pointer;
+    padding: 10px;
+    margin-right: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #222629;
+    background-color: #222629;
+    color: #fff;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+}
+
+.formSubmit:hover {
+    background-color: #383b3d;
+}
+
+.requestResult{
+    width: 90vw;
+    
+    margin: auto;
+    background-color: #313436;
+    min-height: 200px;
+    border-radius: 15px;
+}
+
+table{
+    width: 95%;
+    border-collapse: collapse;
+    margin: auto;
+}
+
+td{
+    text-align: center;
+}
+th {
+    color: rgb(0, 123, 255);
+    font-size: 28px;
+}
+
+tr{
+    border-bottom: solid 1px rgb(127, 126, 126);
+    height: 40px;
+}
+tr:last-child {
+    border-bottom: 0px;
+}
+thead th{
+    cursor: pointer;
+}
+
