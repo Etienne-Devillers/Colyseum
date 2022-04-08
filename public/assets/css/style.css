@@ -6,7 +6,11 @@ body {
     padding: 0;
     font-family: 'Bebas Neue', cursive;
     background-color: #1c1f21;
+    min-height: 100vh;
     color: rgb(222, 216, 216);
+}
+main{
+    min-height: calc(100vh - 25px);
 }
 
 a{
@@ -65,8 +69,7 @@ h2 {
 
 .requestResult{
     width: 90vw;
-    
-    margin: auto;
+    margin: 2em auto;
     background-color: #313436;
     min-height: 200px;
     border-radius: 15px;
@@ -81,6 +84,7 @@ table{
 td{
     text-align: center;
 }
+
 th {
     color: rgb(0, 123, 255);
     font-size: 28px;
@@ -96,4 +100,66 @@ tr:last-child {
 thead th{
     cursor: pointer;
 }
+
+.idTh, .titleOrder, .lastnameOrder{
+    position: relative;
+}
+.idTh::after {
+    content: '';
+    position: absolute;
+    top: 35%;
+        width: 0;
+        height: 0;
+        border: 10px solid transparent;
+        border-top: 0;
+        border-bottom: 10px solid rgb(0, 123, 255);
+        transform: var(--rotation);
+}
+
+.lastnameOrder::after {
+    content: '';
+    position: absolute;
+    top: 35%;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-top: 0;
+    border-bottom: 10px solid rgb(0, 123, 255);
+    transform: var(--rotation);
+}
+
+
+.titleOrder::after {
+    content: '';
+    position: absolute;
+    top: 35%;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-top: 0;
+    border-bottom: 10px solid rgb(0, 123, 255);
+    transform: var(--rotation);
+}
+
+footer {
+    width: 100%;
+    height: 25px;
+    text-align: center;
+    background-color: rgb(0,123,255);
+
+}
+
+@media screen and (max-width:600px){
+
+.titleOrder::after, .lastnameOrder::after, .idTh::after {
+ opacity: 0;
+}
+
+th {
+    font-size: 18px;
+}
+}
+
+
+
 

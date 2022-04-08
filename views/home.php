@@ -4,7 +4,9 @@
     <div>Choisissez ce que vous souhaitez afficher.</div>
 
         <select name="choice" id="choiceSelect">
-            <option value="1" selected>Exercice1</option>
+        
+            <option value="0" selected>-</option>
+            <option value="1" >Exercice1</option>
             <option value="2" >Exercice2</option>
             <option value="3" >Exercice3</option>
             <option value="4" >Exercice4</option>

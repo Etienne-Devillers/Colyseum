@@ -59,9 +59,9 @@ if(!empty($_GET)){
 
                 case '4':
                     if ($_GET['order'] == 'id-DESC') {
-                        $firstRequest = $sql->prepare('SELECT * FROM clients  WHERE card=1 ORDER BY id DESC');
+                        $firstRequest = $sql->prepare('SELECT * FROM clients, cards WHERE clients.cardNumber = cards.cardNumber AND cards.cardTypesId = 1 ORDER BY clients.id DESC');
                     } else {
-                        $firstRequest = $sql->prepare('SELECT * FROM clients WHERE card=1');
+                        $firstRequest = $sql->prepare('SELECT * FROM clients, cards WHERE clients.cardNumber = cards.cardNumber AND cards.cardTypesId = 1');
                     }
 
                     $firstRequest->execute();
@@ -70,25 +70,46 @@ if(!empty($_GET)){
 
                 case '5':
                     if ($_GET['order'] == 'id-DESC') {
-                        $firstRequest = $sql->prepare("SELECT * FROM `clients` WHERE `lastname` LIKE 'M%' ORDER BY id DESC ");
+                        $firstRequest = $sql->prepare("SELECT * FROM `clients` WHERE `lastname` LIKE 'M%' ORDER BY lastName DESC ");
                     } else {
-                        $firstRequest = $sql->prepare("SELECT * FROM `clients` WHERE `lastname` LIKE 'M%' ");
+                        $firstRequest = $sql->prepare("SELECT * FROM `clients` WHERE `lastname` LIKE 'M%' ORDER BY lastName ASC");
                     }
                     $firstRequest->execute();
                     $result = $firstRequest->fetchAll();
                 break;
 
                 case '6':
-                    $firstRequest = $sql->prepare("SELECT id, title, performer, date, startTime FROM `shows` ORDER BY title;");
+                    if ($_GET['order'] == 'id-DESC') {
+                        $firstRequest = $sql->prepare("SELECT id, title, performer, date, startTime FROM `shows` ORDER BY title DESC");
+                    } else {
+                        $firstRequest = $sql->prepare("SELECT id, title, performer, date, startTime FROM `shows` ORDER BY title");
+                    }
+                    
                     $firstRequest->execute();
                     $result = $firstRequest->fetchAll();
                 break;
 
                 case '7':
                     if ($_GET['order'] == 'id-DESC') {
-                        $firstRequest = $sql->prepare('SELECT * FROM clients ORDER BY id DESC');
+                        $firstRequest = $sql->prepare("SELECT clients.id,
+                        firstname,
+                        lastname,
+                        birthdate,
+                        CASE
+                            WHEN clients.cardNumber = cards.cardNumber AND cards.cardTypesId = 1 THEN 'oui'
+                            ELSE 'non'
+                        END AS fidelityCard
+                        ,cards.cardNumber FROM clients LEFT JOIN cards ON clients.cardNumber = cards.cardNumber ORDER BY id DESC");
                     } else {
-                        $firstRequest = $sql->prepare('SELECT * FROM clients');
+                        $firstRequest = $sql->prepare("SELECT clients.id,
+                        firstname,
+                        lastname,
+                        birthdate,
+                        CASE
+                            WHEN clients.cardNumber = cards.cardNumber AND cards.cardTypesId = 1 THEN 'oui'
+                            ELSE 'non'
+                        END AS fidelityCard
+                        ,cards.cardNumber FROM clients LEFT JOIN cards ON clients.cardNumber = cards.cardNumber ORDER BY id ASC");
                     }
                     $firstRequest->execute();
                     $result = $firstRequest->fetchAll();

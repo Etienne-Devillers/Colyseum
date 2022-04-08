@@ -27,31 +27,32 @@ function fetchFunction(order, value){
             break;
 
             case '2':
-                exercice2(datas, exerciceResume, exerciceResumeSentence, indexResume)
+                exercice2(datas, exerciceResume, exerciceResumeSentence, indexResume);
                 orderById(order, value);
             break;
 
             case '3':
-                exercice3(datas, exerciceResume, exerciceResumeSentence, indexResume)
+                exercice3(datas, exerciceResume, exerciceResumeSentence, indexResume);
                 orderById(order, value);
             break;
 
             case '4':
-                exercice4(datas, exerciceResume, exerciceResumeSentence, indexResume)
+                exercice4(datas, exerciceResume, exerciceResumeSentence, indexResume);
                 orderById(order, value);
             break;
 
             case '5':
-                exercice5(datas, exerciceResume, exerciceResumeSentence, indexResume)
-                orderById(order, value);
+                exercice5(datas, exerciceResume, exerciceResumeSentence, indexResume);
+                orderByName(order, value);
             break;
 
             case '6':
-                exercice6(datas, exerciceResume, exerciceResumeSentence, indexResume)
+                exercice6(datas, exerciceResume, exerciceResumeSentence, indexResume);
+                orderByTitle(order, value);
             break;
 
             case '7':
-                exercice7(datas, exerciceResume, exerciceResumeSentence, indexResume)
+                exercice7(datas, exerciceResume, exerciceResumeSentence, indexResume);
                 orderById(order, value);
             break;
         
@@ -64,9 +65,9 @@ function fetchFunction(order, value){
 
 select.addEventListener('input', () => {
     let value = select.options[select.selectedIndex].value; // on récupere la value de l'option choisi.
-
+    document.documentElement.style.setProperty('--rotation', 'translateX(10px) rotate(0deg)');
     try {
-        fetchFunction(order, value)  
+        fetchFunction(order, value) ;
     } catch(e){
         console.log(e.message);
     }

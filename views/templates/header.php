@@ -8,6 +8,7 @@
     <title>Colyseum - Exercice</title>
 </head>
 <body>
+    <main>
     <header>
         <h1><a href="http://colyseum.localhost/index.php">Colyseum</a></h1>
     </header>
