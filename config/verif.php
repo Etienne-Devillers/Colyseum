@@ -6,7 +6,8 @@ const VERIF_GET = ['1',
                 '4',
                 '5',
                 '6',
-                '7'];
+                '7',
+            'id'];
 
 define('DSN', 'mysql:host=localhost;dbname=colyseum;charset=utf8');
 define('USERDB', 'colyseumUser');

@@ -149,10 +149,16 @@ footer {
 
 }
 
+td img{
+    width: 25px;
+    margin-right: 1em;
+    cursor: pointer;
+}
+
 @media screen and (max-width:600px){
 
 .titleOrder::after, .lastnameOrder::after, .idTh::after {
- opacity: 0;
+opacity: 0;
 }
 
 th {

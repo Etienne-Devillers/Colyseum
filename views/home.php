@@ -13,6 +13,7 @@
             <option value="5" >Exercice5</option>
             <option value="6" >Exercice6</option>
             <option value="7" >Exercice7</option>
+            
         </select>
         <span class="exerciceResume"></span>
 

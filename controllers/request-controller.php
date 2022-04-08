@@ -18,8 +18,6 @@ if(!empty($_GET)){
                 $sql = new PDO(
                     DSN,
                     USERDB,
-
-                    
                     PWD,
                 [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
             } catch(PDOException $e) {
@@ -61,9 +59,9 @@ if(!empty($_GET)){
 
                 case '4':
                     if ($_GET['order'] == 'id-DESC') {
-                        $firstRequest = $sql->prepare('SELECT * FROM clients, cards WHERE clients.cardNumber = cards.cardNumber AND cards.cardTypesId = 1 ORDER BY clients.id DESC');
+                        $firstRequest = $sql->prepare('SELECT clients.id, clients.lastname, clients.firstname, clients.birthdate, clients.cardNumber FROM clients JOIN cards ON clients.cardNumber = cards.cardNumber WHERE cards.cardTypesId = 1 ORDER BY clients.id DESC');
                     } else {
-                        $firstRequest = $sql->prepare('SELECT * FROM clients, cards WHERE clients.cardNumber = cards.cardNumber AND cards.cardTypesId = 1');
+                        $firstRequest = $sql->prepare('SELECT clients.id, clients.lastname, clients.firstname, clients.birthdate, clients.cardNumber FROM clients JOIN cards ON clients.cardNumber = cards.cardNumber WHERE cards.cardTypesId = 1');
                     }
 
                     $firstRequest->execute();
@@ -100,8 +98,9 @@ if(!empty($_GET)){
                         CASE
                             WHEN clients.cardNumber = cards.cardNumber AND cards.cardTypesId = 1 THEN 'oui'
                             ELSE 'non'
-                        END AS fidelityCard
-                        ,cards.cardNumber FROM clients LEFT JOIN cards ON clients.cardNumber = cards.cardNumber ORDER BY id DESC");
+                        END AS fidelityCard,
+                        IF (cards.cardTypesId = 1, cards.cardNumber, '--') AS 'cardNumber' 
+                        FROM clients LEFT JOIN cards ON clients.cardNumber = cards.cardNumber ORDER BY id DESC");
                     } else {
                         $firstRequest = $sql->prepare("SELECT clients.id,
                         firstname,
@@ -110,9 +109,26 @@ if(!empty($_GET)){
                         CASE
                             WHEN clients.cardNumber = cards.cardNumber AND cards.cardTypesId = 1 THEN 'oui'
                             ELSE 'non'
-                        END AS fidelityCard
-                        ,cards.cardNumber FROM clients LEFT JOIN cards ON clients.cardNumber = cards.cardNumber ORDER BY id ASC");
+                        END AS fidelityCard,
+                        IF (cards.cardTypesId = 1, cards.cardNumber, '--') AS 'cardNumber' 
+                        FROM clients LEFT JOIN cards ON clients.cardNumber = cards.cardNumber ORDER BY id ASC");
                     }
+                    $firstRequest->execute();
+                    $result = $firstRequest->fetchAll();
+                break;
+
+                case 'id':
+                        $test = $_GET['order'];
+                        $firstRequest = $sql->prepare("SELECT clients.id,
+                        clients.lastname,
+                        clients.firstname,
+                        clients.birthdate,
+						cardtypes.type,
+                        clients.cardNumber
+                        FROM clients LEFT JOIN cards ON clients.cardnumber = cards.cardnumber 
+                        LEFT JOIN cardtypes ON cardtypes.id = cards.cardTypesId WHERE clients.id = :id");
+                    $firstRequest->bindValue(':id', $test);
+                    
                     $firstRequest->execute();
                     $result = $firstRequest->fetchAll();
                 break;

@@ -24,6 +24,7 @@ function fetchFunction(order, value){
             case '1':
                 exercice1(datas, exerciceResume, exerciceResumeSentence, indexResume);
                 orderById(order, value);
+                addProfilCard();
             break;
 
             case '2':
@@ -55,6 +56,10 @@ function fetchFunction(order, value){
                 exercice7(datas, exerciceResume, exerciceResumeSentence, indexResume);
                 orderById(order, value);
             break;
+
+            case 'id':
+                idSolo(datas, exerciceResume, exerciceResumeSentence, indexResume)
+            break;
         
             default:
                 break;                
@@ -71,4 +76,10 @@ select.addEventListener('input', () => {
     } catch(e){
         console.log(e.message);
     }
+
+
+
 })
+
+
+
