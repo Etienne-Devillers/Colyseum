@@ -18,6 +18,8 @@ if(!empty($_GET)){
                 $sql = new PDO(
                     DSN,
                     USERDB,
+
+                    
                     PWD,
                 [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
             } catch(PDOException $e) {
